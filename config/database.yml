@@ -49,6 +49,9 @@ test:
 #
 production:
   <<: *default
-  database: pemda
-  username: pemda
+  adapter: sqlite3
+  database: db/production.sqlite3
+  
+  # database: pemda
+ # username: pemda
   password: <%= ENV['PEMDA_DATABASE_PASSWORD'] %>
