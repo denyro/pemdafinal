@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>   
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.js"></script>
+	</head>
+    <body>
+        <!-- set loading layer -->
+        <div class="dev-page-loading preloader"></div>
+        <!-- ./set loading layer -->        
+        
+        <!-- page wrapper -->
+        <div class="dev-page">
+            
+            <%= render :partial => 'layouts/header' %>
+            
+            <!-- page container -->
+            <div class="dev-page-container">
+
+                <!-- page sidebar -->
+              <div class="dev-page-sidebar">
+                <ul class="dev-page-navigation">
+                  <li class="title">Navigation</li>
+                  <li>
+                    <a href="/admin"><i class="fa fa-dashboard"></i> <span>Admin</span></a>
+                  </li>
+                  <li>
+                    <a href=""><i class="fa fa-dashboard"></i> <span>View</span></a>
+                    <ul>
+                      <li><a href="/admin/dim"><i class="fa fa-dashboard"></i> <span>DIM</span></a></li>
+                      <li><a href="/admin/prodi"><i class="fa fa-dashboard"></i> <span>Prodi</span></a></li>
+                      <li><a href="/admin/agama"><i class="fa fa-dashboard"></i> <span>Agama</span></a></li>
+                      <li><a href="/admin/gol"><i class="fa fa-dashboard"></i> <span>Golongan Darah</span></a></li>
+                    </ul>
+                  </li>
+                  <li  class="active">
+                    <a href=""><i class="fa fa-dashboard"></i> <span>New</span></a>
+                    <ul>
+                      <li  class="active"><a href="/admin/dim/new_data"><i class="fa fa-dashboard"></i> <span>DIM</span></a></li>
+                      <li><a href="/admin/prodi/new_prodi"><i class="fa fa-dashboard"></i> <span>Prodi</span></a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="/signed_out"><i class="fa fa-power-off"></i> <span>Log Off</span></a>
+                  </li>
+                </ul>
+
+              </div>
+				<!-- ./page sidebar -->
+                
+                <!-- page content -->
+                <div class="dev-page-content">                    
+                    <!-- page content container -->
+                    <div class="container">
+                        
+                        <!-- page title -->
+                        <div class="page-title">
+                            <h1>Input Mahasiswa Baru</h1>
+                        </div>                        
+                        <!-- ./page title -->                        
+                        
+                        <!-- Horizontal Form -->
+                        <div class="wrapper wrapper-white">
+
+                            <form id="newdimForm" class="form-horizontal" action="/admin/dim/new_data" method="post">
+                                <div class="form-group">
+									<label class="col-md-2 control-label">NPM</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="npm" required>
+                                    </div>
+									<label class="col-md-2 control-label">Nama</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="nama" required>
+                                    </div>
+                                </div>
+								<div class="form-group">
+                                    <label class="col-md-2 control-label">Tanggal Lahir</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="lahir" name="lahir" required>
+                                    </div>
+									<label class="col-md-2 control-label">Angkatan</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="angkatan" name="angkatan" required minlength="4" maxlength="4">
+                                    </div>
+                                </div>
+								<div class="form-group">
+                                    <label class="col-md-2 control-label">Agama</label>
+                                    <div class="col-md-4">
+                                        <select class="form-control selectpicker" data-live-search="false" name="agama">
+												<% @dataagama.each do |da| %>
+													<option value=<%= da["kode"] %>><%= da["agama"] %></option>
+												<% end %>
+										</select>
+                                    </div>
+									<label class="col-md-2 control-label">Golongan Darah</label>
+                                    <div class="col-md-4">
+										<select class="form-control selectpicker" data-live-search="false" name="gol">
+												<option value="A">A</option>
+												<option value="B">B</option>
+												<option value="AB">AB</option>
+												<option value="O">O</option>
+										</select>
+                                    </div>
+                                </div>
+								
+								<div class="form-group">
+									<label class="col-md-2 control-label">Program Studi</label>
+									<div class="col-md-4">
+										<select class="form-control selectpicker" data-live-search="true" name="prodi">
+											<% @dataprodi.each do |p| %>
+												<option value=<%= p["kode"] %>><%= p["nama_prodi"] %></option>
+											<% end %>
+										</select>
+									</div>
+									<label class="col-md-2 control-label">Jenis Kelamin</label>
+									<div class="col-md-4">
+									<select class="form-control selectpicker" data-live-search="false" name="jk">
+											<option value="L">Laki-laki</option>
+											<option value="P">Perempuan</option>
+									</select>
+									</div>
+                                </div>
+								
+								<div class="form-group">
+									<label class="col-md-2 control-label">Propinsi Asal</label>
+									<div class="col-md-10">
+										<select class="form-control selectpicker" data-live-search="true" name="prop">
+											<% @datapropinsi.each do |dp| %>
+												<option value=<%= dp["id"] %>><%= dp["title"] %></option>
+											<% end %>
+										</select>
+									</div>
+                                </div>
+								
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-success btn-block">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                        </div>
+						
+						<script>
+							$("#newdimForm").validate({
+								rules: {
+									angkatan: {
+										digits: true
+									},
+									lahir: {
+										
+									}
+								}
+							});
+						</script>
+						
+						<script>
+							$('#lahir').datepicker({format: 'yyyy-dd-mm'}); 
+						</script>
+					
+                        <!-- ./Horizontal Form -->
+                        
+                        
+                        
+                      
+                        
+                        
+                        
+                    </div>
+                    <!-- ./page content container -->                                       
+                </div>
+                <!-- ./page content -->                                                
+            </div>  
+            <!-- ./page container -->
+            
+                 
+        </div>
+        <!-- ./page wrapper -->
+        
+        
+       
+                     
+        
+
+        
+    </body>
+</html>

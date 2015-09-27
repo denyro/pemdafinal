@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+    <head>
+
+        <script>
+            var chartp;
+			
+			var chartProdi = <%= @dataprodi.to_json.html_safe %>
+
+            AmCharts.ready(function () {
+                // SERIAL CHART
+                chartp = new AmCharts.AmSerialChart();
+
+                chartp.dataProvider = chartProdi;
+                chartp.marginLeft = 10;
+                chartp.categoryField = "angkatan";
+				chartp.startDuration = 1;
+				chartp.startEffect = "elastic"
+
+
+
+                // AXES
+                // category
+                var categoryAxis = chartp.categoryAxis;
+                categoryAxis.dashLength = 3;
+                categoryAxis.minorGridEnabled = true;
+                categoryAxis.minorGridAlpha = 0.1;
+
+                // value
+                var valueAxis = new AmCharts.ValueAxis();
+                valueAxis.axisAlpha = 0;
+                valueAxis.inside = true;
+                valueAxis.dashLength = 3;
+                chartp.addValueAxis(valueAxis);
+
+                // GRAPH 0
+                graph0 = new AmCharts.AmGraph();
+				graph0.title = "Geofisika";
+                graph0.type = "smoothedLine"; // this line makes the graph smoothed line.
+                graph0.lineColor = "#1ddf34";
+                graph0.negativeLineColor = "#637bb6"; // this line makes the graph to change color when it drops below 0
+                graph0.bullet = "square";
+                graph0.bulletSize = 8;
+                graph0.bulletBorderColor = "#000000";
+                graph0.bulletBorderAlpha = 1;
+                graph0.bulletBorderThickness = 2;
+                graph0.lineThickness = 2;
+                graph0.valueField = "Geofis";
+                graph0.balloonText = "Geofisika<br><b><span style='font-size:14px;'>[[value]]</span></b>";
+                chartp.addGraph(graph0);
+				
+				// GRAPH 1
+                graph1 = new AmCharts.AmGraph();
+				graph1.title = "Manajemen Informatika";
+                graph1.type = "smoothedLine"; // this line makes the graph smoothed line.
+                graph1.lineColor = "#68bdf0";
+                graph1.negativeLineColor = "#637bb6"; // this line makes the graph to change color when it drops below 0
+                graph1.bullet = "round";
+                graph1.bulletSize = 8;
+                graph1.bulletBorderColor = "#000000";
+                graph1.bulletBorderAlpha = 1;
+                graph1.bulletBorderThickness = 2;
+                graph1.lineThickness = 2;
+                graph1.valueField = "MI";
+                graph1.balloonText = "Manajemen Informatika<br><b><span style='font-size:14px;'>[[value]]</span></b>";
+                chartp.addGraph(graph1);
+				
+				// GRAPH 2
+                graph2 = new AmCharts.AmGraph();
+				graph2.title = "Teknik Informatika";
+                graph2.type = "smoothedLine"; // this line makes the graph smoothed line.
+                graph2.lineColor = "#f0f222";
+                graph2.negativeLineColor = "#637bb6"; // this line makes the graph to change color when it drops below 0
+                graph2.bullet = "triangleUp";
+                graph2.bulletSize = 8;
+                graph2.bulletBorderColor = "#000000";
+                graph2.bulletBorderAlpha = 1;
+                graph2.bulletBorderThickness = 2;
+                graph2.lineThickness = 2;
+                graph2.valueField = "TI";
+                graph2.balloonText = "Teknik Informatika<br><b><span style='font-size:14px;'>[[value]]</span></b>";
+                chartp.addGraph(graph2);
+				
+				// GRAPH 3
+                graph3 = new AmCharts.AmGraph();
+				graph3.title = "Teknik Komputer";
+                graph3.type = "smoothedLine"; // this line makes the graph smoothed line.
+                graph3.lineColor = "#dd871d";
+                graph3.negativeLineColor = "#637bb6"; // this line makes the graph to change color when it drops below 0
+                graph3.bullet = "triangleDown";
+                graph3.bulletSize = 8;
+                graph3.bulletBorderColor = "#000000";
+                graph3.bulletBorderAlpha = 1;
+                graph3.bulletBorderThickness = 2;
+                graph3.lineThickness = 2;
+                graph3.valueField = "TK";
+                graph3.balloonText = "Teknik Komputer<br><b><span style='font-size:14px;'>[[value]]</span></b>";
+                chartp.addGraph(graph3);
+				
+				// GRAPH 4
+                graph4 = new AmCharts.AmGraph();
+				graph4.title = "Instrumentasi Elektronika";
+                graph4.type = "smoothedLine"; // this line makes the graph smoothed line.
+                graph4.lineColor = "#f60101";
+                graph4.negativeLineColor = "#637bb6"; // this line makes the graph to change color when it drops below 0
+                graph4.bullet = "diamond";
+                graph4.bulletSize = 8;
+                graph4.bulletBorderColor = "#000000";
+                graph4.bulletBorderAlpha = 1;
+                graph4.bulletBorderThickness = 2;
+                graph4.lineThickness = 2;
+                graph4.valueField = "IE";
+                graph4.balloonText = "Instrumentasi Elektronika<br><b><span style='font-size:14px;'>[[value]]</span></b>";
+                chartp.addGraph(graph4);
+				
+				// GRAPH 5
+                graph5 = new AmCharts.AmGraph();
+				graph5.title = "Kimia Industri";
+                graph5.type = "smoothedLine"; // this line makes the graph smoothed line.
+                graph5.lineColor = "#f601ec";
+                graph5.negativeLineColor = "#637bb6"; // this line makes the graph to change color when it drops below 0
+                graph5.bullet = "bubble";
+                graph5.bulletSize = 8;
+                graph5.bulletBorderColor = "#000000";
+                graph5.bulletBorderAlpha = 1;
+                graph5.bulletBorderThickness = 2;
+                graph5.lineThickness = 2;
+                graph5.valueField = "KI";
+                graph5.balloonText = "Kimia Industri<br><b><span style='font-size:14px;'>[[value]]</span></b>";
+                chartp.addGraph(graph5);
+				
+				// GRAPH 6
+                graph6 = new AmCharts.AmGraph();
+				graph6.title = "Kimia Analis";
+                graph6.type = "smoothedLine"; // this line makes the graph smoothed line.
+                graph6.lineColor = "#c1c7bb";
+                graph6.negativeLineColor = "#637bb6"; // this line makes the graph to change color when it drops below 0
+                graph6.bullet = "xError";
+                graph6.bulletSize = 8;
+                graph6.bulletBorderColor = "#000000";
+                graph6.bulletBorderAlpha = 1;
+                graph6.bulletBorderThickness = 2;
+                graph6.lineThickness = 2;
+                graph6.valueField = "KA";
+                graph6.balloonText = "Kimia Analis<br><b><span style='font-size:14px;'>[[value]]</span></b>";
+                chartp.addGraph(graph6);
+
+                // CURSOR
+                var chartCursor = new AmCharts.ChartCursor();
+                chartCursor.cursorAlpha = 0;
+                chartCursor.cursorPosition = "mouse";
+                chartp.addChartCursor(chartCursor);
+
+
+                chartp.creditsPosition = "bottom-right";
+				
+				// LEGEND
+                var legend = new AmCharts.AmLegend();
+                legend.bulletType = "round";
+                legend.equalWidths = false;
+                legend.valueWidth = 120;
+                legend.useGraphSettings = true;
+                legend.color = "#000000";
+                chartp.addLegend(legend);
+
+                // WRITE
+                chartp.write("chartdivProdi");
+            });
+        </script>
+    </head>
+
+    <body>
+		<div class="wrapper wrapper-white">
+			<div class="col-lg-12">                                    
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <h3 class="panel-title">Distribusi Program Studi per Tahun</h3>
+                        <ul class="panel-btn">
+                            <li><a href="#" class="btn btn-danger panel-collapse"><i class="fa fa-angle-down"></i></a></li> 
+							<li><a href="#" class="btn btn-danger" onClick="dev_panel_fullscreen($(this).parents('.panel')); return false;"><i class="fa fa-compress"></i></a></li>		
+                         </ul>
+                    </div>
+                    <div class="panel-body">
+						<div id="chartdivProdi" style="width: 100%; height: 600px;"></div>
+					</div>                                        
+                </div>
+            </div>    
+        </div>	
+    </body>
+
+</html>

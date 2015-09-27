@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+
+        <!-- page wrapper -->
+        <div class="dev-page dev-page-login dev-page-login-v2">
+                    
+            <div class="dev-page-login-block">
+                <a class="dev-page-login-block__logo">Intuitive</a>
+                <div class="dev-page-login-block__form">
+
+                    <%= form_for @user, :as => :user, :url => sign_in_path(@user) do |f| %>                       
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input id="user_username" name="user[username]" type="text" class="form-control" placeholder="Username">
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                <input id="user_password" name="user[password]"type="password" class="form-control" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group no-border margin-top-20">
+                            <button class="btn btn-success btn-block">Login</button>
+                        </div>
+                   <% end %>
+                </div>
+                <div class="dev-page-login-block__footer">
+					<% flash.each do |name, msg| %>
+					<%= content_tag :div, msg, :id => "flash_#{name}" %>
+					<% end %>
+                </div>
+            </div>
+            
+        </div>
+        <!-- ./page wrapper -->                
+        
+
+    </body>
+</html>
+
+
+
+
+
+

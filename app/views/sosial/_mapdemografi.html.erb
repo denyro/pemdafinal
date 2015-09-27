@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["geochart"]});
+      google.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Region', 'Popularity'],
+          ['Jakarta', 69043],
+			['East Java', 24813],
+			['West Java', 15712],
+			['Yogyakarta', 10937],
+			['Central Java', 10345],
+			['North Sumatra', 9470],
+			['Banten', 3405],
+			['South Sumatra', 3181],
+			['Riau', 2898],
+			['Bali', 2830],
+			['South Sulawesi', 2811],
+			['Lampung', 4000],
+			['West Sumatra', 3000],
+			['East Kalimantan', 2000],
+			['Central Sulawesi', 2953],
+			['West Kalimantan', 10666],
+			['Riau Islands', 5000],
+			['South Kalimantan', 4367],
+			['North Sulawesi', 6790],
+			['West Nusa Tenggara', 9932],
+			['East Nusa Tenggara', 6654],
+			['Papua', 2000],
+			['Central Kalimantan', 7549],
+			['Aceh', 6660],
+			['Bengkulu', 4642],
+			['Jambi', 3456],
+			['Maluku', 5432],
+			['Gorontalo', 10000],
+			['South East Sulawesi', 8096],
+			['North Maluku', 4567],
+			['Bangka Belitung Islands', 2345],
+			['West Papua', 1085]
+        ]);
+
+        var options = {
+		 region: 'ID',
+        displayMode: 'markers',
+        colorAxis: {colors: ['green', 'blue']}
+		 };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="regions_div" style="width: 100%; height: 500px;"></div>
+  </body>
+</html>

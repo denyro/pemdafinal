@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistem Informasi Pemda</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+        <!-- set loading layer -->
+        <div class="dev-page-loading preloader"></div>
+        <!-- ./set loading layer --> 
+
+
+<%= yield %>
+
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<html>
+  <head>
+
+    <script type="text/javascript">
+			var map;
+
+			var chart;
+
+			chartData = <%= @dataMapAgama.to_json.html_safe %>
+
+
+
+			AmCharts.ready(function() {
+				// *** CREATE CHART *********************************************************
+				// PIE CHART
+				chart = new AmCharts.AmPieChart();
+
+				// title of the chart
+				
+
+				chart.backgroundAlpha = 0.4;
+				chart.backgroundColor = "#000000";
+				chart.dataProvider = chartData;
+				chart.titleField = "agama";
+				chart.valueField = "ID-AC";
+				chart.sequencedAnimation = true;
+				chart.startEffect = "elastic";
+				chart.labelsEnabled = false;
+				chart.labelText = "[[title]]";
+				chart.startDuration = 2;
+				chart.labelRadius = 10;
+
+				// WRITE                                 
+				chart.write("chartdivagama");
+				
+				// *** CREATE MAP ***********************************************************
+				
+				map = new AmCharts.AmMap();
+				//map.pathToImages = "http://www.ammap.com/lib/images/";
+				//map.panEventsEnabled = true; // this line enables pinch-zooming and dragging on touch devices
+				var dataProvider = {
+					mapVar: AmCharts.maps.indonesiaLow,
+					getAreasFromMap:true
+				};
+
+				map.areasSettings = {
+					unlistedAreasColor: "#7add2d",
+					color: "#1ddf34",
+					selectedColor: "#083e7c",
+					rollOverColor: "#a3c5ec",
+					rollOverOutlineColor: "#FFFFFF",
+					selectable: true
+				};
+
+				//dataProvider.areas = <%= @dataArea.to_json.html_safe %>
+					
+
+				map.dataProvider = dataProvider;
+				map.write("mapdivagama");
+				
+				map.addListener("clickMapObject", function (event) {
+					if (event.mapObject.id != undefined) {
+						//chart.dataProvider = chartData[event.mapObject.id];
+						chart.valueField = event.mapObject.id;
+						chart.clearLabels();
+						chart.addLabel("0", "!20", event.mapObject.title, "center", 16);
+						chart.validateData();
+					}
+				});
+			});
+    </script>
+	
+  </head>
+  <body>
+		<div class="wrapper wrapper-white">
+			<div class="col-lg-12">                                    
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <h3 class="panel-title">Distribusi Berdasarkan Agama per Propinsi</h3>
+                        <ul class="panel-btn">
+                            <li><a href="#" class="btn btn-danger panel-collapse"><i class="fa fa-angle-down"></i></a></li> 
+							<li><a href="#" class="btn btn-danger" onClick="dev_panel_fullscreen($(this).parents('.panel')); return false;"><i class="fa fa-compress"></i></a></li>		
+                         </ul>
+                    </div>
+                    <div class="panel-body">
+						<div style="width: 100%; height: 362px; position: relative;">
+							<div id="chartdivagama" style="width: 200px; height: 150px; position: absolute; bottom: 0; right: 0; z-index: 100;"></div>
+							<div id="mapdivagama" style="width: 100%; height: 362px; position: absolute; top: 0; left: 0;"></div>
+						</div>
+					</div>                                        
+                </div>
+            </div>    
+        </div>	
+  </body>
+</html>

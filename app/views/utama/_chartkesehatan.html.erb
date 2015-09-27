@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+    <head>
+        <script>
+            var chart;
+
+            var chartData = <%= @datakesehatan.to_json.html_safe %>
+
+
+            AmCharts.ready(function () {
+                // SERIAL CHART
+                chart = new AmCharts.AmSerialChart();
+                chart.dataProvider = chartData;
+                chart.categoryField = "gol_darah";
+				chart.rotate = true;
+                chart.color = "#FFFFFF"
+				chart.backgroundAlpha = 1;
+				chart.backgroundColor = "#303f89"
+                // the following two lines makes chart 3D
+                chart.depth3D = 20;
+                chart.angle = 30;
+				chart.startDuration = 1
+
+                // AXES
+                // category
+                var categoryAxis = chart.categoryAxis;
+                categoryAxis.labelRotation = 90;
+                categoryAxis.dashLength = 5;
+                categoryAxis.gridPosition = "start";
+
+                // value
+                var valueAxis = new AmCharts.ValueAxis();
+                valueAxis.title = "Jumlah";
+                valueAxis.dashLength = 5;
+                chart.addValueAxis(valueAxis);
+
+                // GRAPH
+                var graph = new AmCharts.AmGraph();
+                graph.valueField = "jumlah";
+                graph.balloonText = "<span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>";
+                graph.type = "column";
+                graph.lineAlpha = 0;
+                graph.fillAlphas = 0.5;
+                // you can pass any number of colors in array to create more fancy gradients
+                graph.fillColors = ["#f62b07", "#FF6600"];
+                graph.gradientOrientation = "horizontal";
+                graph.labelPosition = "inside";
+				graph.labelText = "[[category]]: [[value]] ";
+                graph.balloonText = "[[category]]: [[value]] ";
+                chart.addGraph(graph);
+
+                // CURSOR
+                var chartCursor = new AmCharts.ChartCursor();
+                chartCursor.cursorAlpha = 0;
+                chartCursor.zoomable = false;
+                chartCursor.categoryBalloonEnabled = false;
+                chart.addChartCursor(chartCursor);
+
+                chart.creditsPosition = "top-right";
+
+
+                // WRITE
+                chart.write("chartdivsehat");
+				
+				
+            });
+        </script>
+    </head>
+
+    <body>
+		<div class="wrapper wrapper-white">
+			<div class="col-lg-12">                                    
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <h3 class="panel-title">Distribusi Berdasarkan Golongan Darah</h3>
+                        <ul class="panel-btn">
+                            <li><a href="#" class="btn btn-danger panel-collapse"><i class="fa fa-angle-down"></i></a></li> 
+							<li><a href="#" class="btn btn-danger" onClick="dev_panel_fullscreen($(this).parents('.panel')); return false;"><i class="fa fa-compress"></i></a></li>		
+                         </ul>
+                    </div>
+                    <div class="panel-body">
+							<div id="chartdivsehat" style="float:left;width:100%; height:400px;"></div>
+						</div>
+					</div>                                        
+                </div>
+            </div>    
+        </div>	
+    </body>
+
+</html>

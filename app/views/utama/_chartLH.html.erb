@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+    <head>
+        <script>
+            var chart1,chart2,chart3,chart4;
+            var arrow1,arrow2,arrow3,arrow4;
+            var axis1,axis2,axis3,axis4;
+
+            AmCharts.ready(function () {
+                // create angular gauge
+                chart1 = new AmCharts.AmAngularGauge();
+                chart1.addTitle("Panen Padi");
+
+                // create axis
+                axis1 = new AmCharts.GaugeAxis();
+                axis1.startValue = 0;
+				axis1.axisThickness = 1;
+                axis1.valueInterval = 100;
+                axis1.endValue = 1000;
+                // color bands
+                var band11 = new AmCharts.GaugeBand();
+                band11.startValue = 0;
+                band11.endValue = 400;
+                band11.color = "#00CC00";
+
+                var band12 = new AmCharts.GaugeBand();
+                band12.startValue = 400;
+                band12.endValue = 700;
+                band12.color = "#ffac29";
+
+                var band13 = new AmCharts.GaugeBand();
+                band13.startValue = 700;
+                band13.endValue = 1000;
+                band13.color = "#ea3838";
+                band13.innerRadius = "95%";
+
+                axis1.bands = [band11, band12, band13];
+
+                // bottom text
+                axis1.bottomTextYOffset = -20;
+                axis1.setBottomText("0 ton");
+                chart1.addAxis(axis1);
+
+                // gauge arrow
+                arrow1 = new AmCharts.GaugeArrow();
+                chart1.addArrow(arrow1);
+
+					
+				// create angular gauge 2
+                chart2 = new AmCharts.AmAngularGauge();
+                chart2.addTitle("Panen Jagung");
+                axis2 = new AmCharts.GaugeAxis();
+                axis2.startValue = 0;
+				axis2.axisThickness = 1;
+                axis2.valueInterval = 100;
+                axis2.endValue = 1000;
+                axis2.bands = [band11, band12, band13];
+                axis2.bottomTextYOffset = -20;
+                axis2.setBottomText("0 ton");
+                chart2.addAxis(axis2);
+                arrow2 = new AmCharts.GaugeArrow();
+                chart2.addArrow(arrow2);
+				
+				chart3 = new AmCharts.AmAngularGauge();
+                chart3.addTitle("Panen Singkong");
+				axis3 = new AmCharts.GaugeAxis();
+                axis3.startValue = 0;
+				axis3.axisThickness = 1;
+                axis3.valueInterval = 100;
+                axis3.endValue = 1000;
+				axis3.bands = [band11, band12, band13];
+				chart3.addAxis(axis3);
+				arrow3 = new AmCharts.GaugeArrow();
+                chart3.addArrow(arrow3);
+				
+				chart4 = new AmCharts.AmAngularGauge();
+                chart4.addTitle("Panen Ubi");
+				axis4 = new AmCharts.GaugeAxis();
+                axis4.startValue = 0;
+				axis4.axisThickness = 1;
+                axis4.valueInterval = 100;
+                axis4.endValue = 1000;
+				axis4.bands = [band11, band12, band13];
+				chart4.addAxis(axis4);
+				arrow4 = new AmCharts.GaugeArrow();
+				chart4.addArrow(arrow4);
+				
+				chart1.write("chartdiv1");
+                chart2.write("chartdiv2");
+				chart3.write("chartdiv3");
+				chart4.write("chartdiv4");
+				
+                // change value every 2 seconds
+                setInterval(randomValue, 2000);
+            });
+
+            // set random value
+            function randomValue() {
+                var value1 = Math.round(Math.random() * 1000);
+				var value2 = Math.round(Math.random() * 1000);
+				var value3 = Math.round(Math.random() * 1000);
+				var value4 = Math.round(Math.random() * 1000);
+                arrow1.setValue(value1);
+				arrow2.setValue(value2);
+				arrow3.setValue(value3);
+				arrow4.setValue(value4);
+                axis1.setBottomText(value1 + " ton");
+				axis2.setBottomText(value2 + " ton");
+				axis3.setBottomText(value3 + " ton");
+				axis4.setBottomText(value4 + " ton");
+            }
+
+        </script>
+    </head>
+
+    <body>
+		<div class="wrapper wrapper-white">
+			<div class="col-lg-12">                                    
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <h3 class="panel-title">Hasil Panen</h3>
+                        <ul class="panel-btn">
+                            <li><a href="#" class="btn btn-danger panel-collapse"><i class="fa fa-angle-down"></i></a></li> 
+							<li><a href="#" class="btn btn-danger" onClick="dev_panel_fullscreen($(this).parents('.panel')); return false;"><i class="fa fa-compress"></i></a></li>		
+                         </ul>
+                    </div>
+                    <div class="panel-body">
+						<div>
+							<div id="chartdiv1" style="float:left;width:300px; height:240px;"></div>
+							<div id="chartdiv2" style="float:left;width:300px; height:240px;"></div>
+						</div>
+						<div>
+							<div id="chartdiv3" style="float:left;width:300px; height:240px;"></div>
+							<div id="chartdiv4" style="float:left;width:300px; height:240px;"></div>
+						</div>
+					</div>                                        
+                </div>
+            </div>    
+        </div>	
+    </body>
+
+</html>

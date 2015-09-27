@@ -1,0 +1,89 @@
+
+		<!-- page wrapper -->
+        <div class="dev-page">
+			<!-- page container -->
+			<%= render :partial => 'layouts/header' %>
+			<div class="dev-page-container">
+				<!-- page sidebar -->
+                <div class="dev-page-sidebar">
+                     <ul class="dev-page-navigation">
+                        <li class="title">Navigation</li>
+                        <li>
+                            <a href=""><i class="fa fa-dashboard"></i> <span>Admin</span></a>
+                        </li>
+						<li class="active">
+                            <a href=""><i class="fa fa-dashboard"></i> <span>View</span></a>
+							<ul>
+								<li><a href="/admin/dim"><i class="fa fa-dashboard"></i> <span>DIM</span></a></li>
+								<li class="active"><a href="/admin/prodi"><i class="fa fa-dashboard"></i> <span>Prodi</span></a></li>
+								<li><a href="/admin/agama"><i class="fa fa-dashboard"></i> <span>Agama</span></a></li>
+								<li><a href=""><i class="fa fa-dashboard"></i> <span>Golongan Darah</span></a></li>
+							</ul>
+		                </li>
+						<li>		
+							<a href=""><i class="fa fa-dashboard"></i> <span>New</span></a>
+							<ul>
+								<li><a href="/admin/dim/new_data"><i class="fa fa-dashboard"></i> <span>DIM</span></a></li>
+								<li><a href="/admin/prodi/new_prodi"><i class="fa fa-dashboard"></i> <span>Prodi</span></a></li>
+							</ul>
+                        </li>
+                       <li>
+                         <a href="/signed_out"><i class="fa fa-power-off"></i> <span>Log Off</span></a>
+                       </li>
+                     </ul>
+                    
+                </div>
+				<!-- ./page sidebar -->
+				
+				
+				<!-- page content -->
+                <div class="dev-page-content">                    
+                    <!-- page content container -->
+                    <div class="container">
+					
+						<!-- All features -->
+                        <div class="wrapper wrapper-white">
+                            <div class="page-subtitle">
+                                <h3>Daftar Program Studi</h3>
+                            </div>
+                            
+                            <div class="table-responsive">
+                                <table id="example" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Kode</th>
+                                            <th>Nama Prodi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+										<% @prodi.each do |p| %>
+                                        <tr>
+                                            <td><%= p["kode"] %></td>
+                                            <td><%= p["nama_prodi"] %></td>
+                                        </tr>
+										<% end %>
+                                     </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- ./all features -->
+						
+						<script>
+							$(function(){
+								$("#example").dataTable();
+							  })
+						</script>
+						
+						
+					</div>
+                    <!-- ./page content container -->
+                                        
+                </div>
+                <!-- ./page content -->  
+				</div>
+		</div>	
+
+
+
+
+	

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>        
+	
+    </head>
+    <body>
+		
+        
+        <!-- page wrapper -->
+        <div class="dev-page">
+            
+            <%= render :partial => 'layouts/header' %>
+            
+            <!-- page container -->
+            <div class="dev-page-container">
+
+                <!-- page sidebar -->
+              <div class="dev-page-sidebar">
+                <ul class="dev-page-navigation">
+                  <li class="title">Navigation</li>
+                  <li>
+                    <a href="/admin"><i class="fa fa-dashboard"></i> <span>Admin</span></a>
+                  </li>
+                  <li>
+                    <a href=""><i class="fa fa-dashboard"></i> <span>View</span></a>
+                    <ul>
+                      <li><a href="/admin/dim"><i class="fa fa-dashboard"></i> <span>DIM</span></a></li>
+                      <li><a href="/admin/prodi"><i class="fa fa-dashboard"></i> <span>Prodi</span></a></li>
+                      <li><a href="/admin/agama"><i class="fa fa-dashboard"></i> <span>Agama</span></a></li>
+                      <li><a href="/admin/gol"><i class="fa fa-dashboard"></i> <span>Golongan Darah</span></a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href=""><i class="fa fa-dashboard"></i> <span>New</span></a>
+                    <ul>
+                      <li><a href="/admin/dim/new_data"><i class="fa fa-dashboard"></i> <span>DIM</span></a></li>
+                      <li><a href="/admin/prodi/new_prodi"><i class="fa fa-dashboard"></i> <span>Prodi</span></a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="/signed_out"><i class="fa fa-power-off"></i> <span>Log Off</span></a>
+                  </li>
+                </ul>
+
+              </div>
+				<!-- ./page sidebar -->
+                
+                <!-- page content -->
+                <div class="dev-page-content">                    
+                    <!-- page content container -->
+                    <div class="container">
+                        
+                        <!-- page title -->
+                        <div class="page-title">
+                            <h1>Input Program Studi Baru</h1>
+                        </div>                        
+                        <!-- ./page title -->                        
+                        
+                        <!-- Horizontal Form -->
+                        <div class="wrapper wrapper-white">
+
+                            <form id="newprodiForm" class="form-horizontal" action="/admin/prodi/new_prodi" method="post">
+                                <div class="form-group">
+									<label class="col-md-2 control-label">Kode</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="kode" minlength="6" maxlength="6" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Program Studi</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="prodi" required>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-8">
+                                        <button class="btn btn-success btn-block">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                        </div>
+						
+						<script>
+							$("#newprodiForm").validate();
+						</script>
+                        <!-- ./Horizontal Form -->
+                        
+                        
+                        
+                      
+                        
+                        
+                        
+                    </div>
+                    <!-- ./page content container -->                                       
+                </div>
+                <!-- ./page content -->                                                
+            </div>  
+            <!-- ./page container -->
+            
+                 
+        </div>
+        <!-- ./page wrapper -->
+        
+        
+       
+                     
+        
+
+        
+    </body>
+</html>
